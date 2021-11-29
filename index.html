@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pagination</title>
+  </head>
+  <style>
+    .container span {
+      display: inline-block;
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      margin: 0 4px;
+      border-radius: 4px;
+    }
+    .container span.current-page {
+      background-color: #333;
+      color: #fff;
+    }
+    .container span.prev-page::before {
+      content: "<";
+    }
+    .container span.prev-page::after {
+      content: ">";
+    }
+  </style>
+  <body>
+    <main>
+      <h1>Pagination 렌더링 결과</h1>
+      <div class="container"></div>
+    </main>
+    <script type="module">
+      import Pagination from "./src/pagination.js";
+
+      // Test
+      const pagination = new Pagination({
+        currentPage: 4,
+        toalItemCount: 100,
+      });
+      const html = pagination.render();
+      document.querySelector(".container").innerHTML = html;
+    </script>
+  </body>
+</html>
