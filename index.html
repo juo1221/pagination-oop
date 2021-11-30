@@ -19,10 +19,10 @@
       color: #fff;
     }
     .container span.prev-page::before {
-      content: "<";
+      content: '<';
     }
-    .container span.prev-page::after {
-      content: ">";
+    .container span.next-page::after {
+      content: '>';
     }
   </style>
   <body>
@@ -31,15 +31,36 @@
       <div class="container"></div>
     </main>
     <script type="module">
-      import Pagination from "./src/pagination.js";
+      import Pagination from './src/pagination.js';
 
-      // Test
-      const pagination = new Pagination({
-        currentPage: 4,
-        toalItemCount: 100,
-      });
-      const html = pagination.render();
-      document.querySelector(".container").innerHTML = html;
+      // Test1
+      /*
+      const page1 = new Pagination({ currentPage: 30 });
+      const page2 = new Pagination({ totalItemCount: 40 });
+      const page3 = new Pagination({ pagePerItemCount: 300 });
+      page1.setState({ currentPage: 30, totalItemCount: 0, pagePerItemCount: 0 });
+      page1.setState({ currentPage: '10', totalItemCount: 30, pagePerItemCount: 200 });
+      console.log(page1);
+      console.log(page2);
+      console.log(page3);
+      */
+
+      // Test2
+      // const pagination = new Pagination();
+
+      // Test3
+      // const pagination = new Pagination({ currentPage: 17, totalItemCount: 600 });
+      // const html = pagination.render();
+
+      // pagination.setState({ currentPage: 35 });
+      // const html2 = pagination.render();
+
+      // const pagination2 = new Pagination({
+      //   currentPage: 5,
+      //   totalItemCount: 30,
+      //   pagePerItemCount: 5,
+      // });
+      // const html3 = pagination2.render();
     </script>
   </body>
 </html>
