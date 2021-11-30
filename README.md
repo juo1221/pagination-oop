@@ -1,3 +1,5 @@
+링크 : https://juo1221.github.io/pagination-oop/index.html
+
 # pagination-oop 연습
 
 ![p](https://user-images.githubusercontent.com/79268108/144110128-998c43e6-0277-45e1-ace8-3c07627cf660.png)
