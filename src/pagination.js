@@ -3,6 +3,7 @@ const err = (msg) => {
 };
 const el = (v) => document.createElement(v);
 const pageDvided = 10;
+const itemBox = document.querySelector('.item-box');
 
 export default class Pagination {
   static base = {
@@ -69,6 +70,8 @@ class DomRenderer extends Renderer {
     let { currentPage, totalItemCount, pagePerItemCount } = this.app.getState();
     const totalPageCount = Math.ceil(totalItemCount / pagePerItemCount);
     if (!totalPageCount) return '<div></div>';
+
+    itemBox.innerHTML = '';
     if (currentPage > totalPageCount) {
       this.app.setState({ currentPage: totalPageCount });
       this.render();
@@ -82,6 +85,13 @@ class DomRenderer extends Renderer {
       .slice(firstPage - 1, lastPage)
       .join('');
 
+    let num = (currentPage - 1) * pagePerItemCount;
+    new Array(pagePerItemCount).fill(0).forEach((_, i) => {
+      if (num >= totalItemCount) return;
+      const li = itemBox.appendChild(el('li'));
+      li.classList.add('item');
+      li.innerHTML = ++num;
+    });
     const html =
       (currentPage > 1 ? `<button class="prev-page"></button>` : '') +
       string +
@@ -108,5 +118,5 @@ class DomRenderer extends Renderer {
 
 new DomRenderer(
   document.querySelector('.container'),
-  new Pagination({ currentPage: 10, totalItemCount: 500, pagePerItemCount: 10 }),
+  new Pagination({ currentPage: 1, totalItemCount: 199, pagePerItemCount: 20 }),
 );

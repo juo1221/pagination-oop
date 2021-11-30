@@ -21,9 +21,21 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 500px;
+      width: 60%;
+      min-width: 700px;
       text-align: center;
       transform: translate(-50%, -50%);
+    }
+    .item-box {
+      list-style: none;
+      padding: 0;
+      height: 500px;
+      overflow: scroll;
+    }
+    .item {
+      border: 1px solid rgb(168, 168, 173);
+      padding: 8px 12px;
+      margin: 8px 12px;
     }
     .container span {
       padding: 8px 12px;
@@ -51,8 +63,9 @@
     }
   </style>
   <body>
-    <h1>Pagination 렌더링 결과</h1>
+    <h1>Pagination 렌더링</h1>
     <main>
+      <ul class="item-box"></ul>
       <div class="container"></div>
     </main>
     <script type="module">
