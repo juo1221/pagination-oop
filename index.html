@@ -17,6 +17,28 @@
     body {
       height: 100vh;
     }
+    header {
+      width: 60%;
+      min-width: 700px;
+      margin: 0 auto;
+    }
+    button {
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      padding: 8px 12px;
+    }
+    .fieldset {
+      position: relative;
+    }
+    .submit {
+      background-color: rgb(241, 115, 115);
+      color: #fff;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      margin: 8px 12px;
+    }
     main {
       position: absolute;
       top: 50%;
@@ -25,17 +47,22 @@
       min-width: 700px;
       text-align: center;
       transform: translate(-50%, -50%);
+      margin-top: 20px;
     }
     .item-box {
       list-style: none;
       padding: 0;
       height: 500px;
-      overflow: scroll;
+      overflow: auto;
     }
     .item {
       border: 1px solid rgb(168, 168, 173);
       padding: 8px 12px;
       margin: 8px 12px;
+      transition: background-color 0.1s linear;
+    }
+    .item:hover {
+      background-color: rgb(245, 188, 188);
     }
     .container span {
       padding: 8px 12px;
@@ -56,14 +83,24 @@
     }
     .prev-page,
     .next-page {
-      cursor: pointer;
-      border: none;
-      background-color: #fff;
+      background-color: rgb(255, 255, 255);
       font-size: 20px;
     }
   </style>
   <body>
     <h1>Pagination 렌더링</h1>
+    <header>
+      <form class="form">
+        <fieldset class="fieldset">
+          <legend>select</legend>
+          총 리스트 수 : <input type="text" id="listAllValue" required /> ( max : 10,000 ) <br />
+          <br />
+          페이지 당 리스트 수 : <input type="text" id="pagePerListValue" required /> ( max : 10,000
+          )
+          <button class="submit" type="submit">제출하기</button>
+        </fieldset>
+      </form>
+    </header>
     <main>
       <ul class="item-box"></ul>
       <div class="container"></div>

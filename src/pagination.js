@@ -1,4 +1,5 @@
 const err = (msg) => {
+  alert(msg);
   throw msg;
 };
 const el = (v) => document.createElement(v);
@@ -8,8 +9,8 @@ const itemBox = document.querySelector('.item-box');
 export default class Pagination {
   static base = {
     currentPage: 1,
-    totalItemCount: 0,
-    pagePerItemCount: 20,
+    totalItemCount: 50,
+    pagePerItemCount: 10,
   };
   constructor(stateParams) {
     this.#setParams(stateParams, Pagination.base);
@@ -116,7 +117,21 @@ class DomRenderer extends Renderer {
   }
 }
 
-new DomRenderer(
-  document.querySelector('.container'),
-  new Pagination({ currentPage: 1, totalItemCount: 199, pagePerItemCount: 20 }),
-);
+const totalItemCount = document.querySelector('#listAllValue');
+const pagePerItemCount = document.querySelector('#pagePerListValue');
+const form = document.querySelector('.form');
+const validator = [(v) => !isNaN(Number(v)), (v) => Number(v) <= 10000];
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  [totalItemCount.value, pagePerItemCount.value].forEach((v) => {
+    if (!validator.every((vali) => vali(v))) err('invalid value');
+  });
+  new DomRenderer(
+    document.querySelector('.container'),
+    new Pagination({
+      currentPage: 1,
+      totalItemCount: +totalItemCount.value,
+      pagePerItemCount: +pagePerItemCount.value,
+    }),
+  );
+});
