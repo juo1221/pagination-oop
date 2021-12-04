@@ -31,22 +31,13 @@ export default class Pagination {
       totalItemCount: baseItemCount,
       pagePerItemCount: basePageCount,
     } = base;
-    this.currentPage = this.#chCurrPage(currentPage) || basePage;
-    this.totalItemCount = this.#chTotalItemCnt(totalItemCount) ?? baseItemCount;
-    this.pagePerItemCount = this.#chPageCtn(pagePerItemCount) || basePageCount;
+    this.currentPage = this.#check(currentPage, null) || basePage;
+    this.totalItemCount = this.#check(totalItemCount, true) ?? baseItemCount;
+    this.pagePerItemCount = this.#check(pagePerItemCount, null) || basePageCount;
   }
   #check(arg, bool) {
     if ((bool ? arg >= 0 : arg > 0) && typeof arg === 'number') return arg;
     else return null;
-  }
-  #chCurrPage(currentPage) {
-    return this.#check(currentPage, 1);
-  }
-  #chTotalItemCnt(totalItemCount) {
-    return this.#check(totalItemCount, true);
-  }
-  #chPageCtn(pagePerItemCount) {
-    return this.#check(pagePerItemCount, 2);
   }
 }
 class Renderer {
