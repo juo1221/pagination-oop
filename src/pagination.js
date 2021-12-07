@@ -31,12 +31,12 @@ export default class Pagination {
       totalItemCount: baseItemCount,
       pagePerItemCount: basePageCount,
     } = base;
-    this.currentPage = this.#check(currentPage, null) || basePage;
-    this.totalItemCount = this.#check(totalItemCount, true) ?? baseItemCount;
-    this.pagePerItemCount = this.#check(pagePerItemCount, null) || basePageCount;
+    this.currentPage = this.#check(currentPage) || basePage;
+    this.totalItemCount = this.#check(totalItemCount) ?? baseItemCount;
+    this.pagePerItemCount = this.#check(pagePerItemCount) || basePageCount;
   }
-  #check(arg, bool) {
-    if ((bool ? arg >= 0 : arg > 0) && typeof arg === 'number') return arg;
+  #check(arg) {
+    if (arg >= 0 && typeof arg === 'number') return arg;
     else return null;
   }
 }
